@@ -1,16 +1,16 @@
 <script setup>
-  import { ref } from 'vue';
+  import HeaderComponent from './components/HeaderComponent.vue';
 
 </script>
 
 <template>
-  <ul>
-    <li><router-link to="/"></router-link>Home</li>
-    <li><router-link to="/about">About</router-link></li>
-    <li><router-link to="/dssdsdds">Broken Link</router-link></li>
-  </ul>
+  <HeaderComponent/>
 
-  <router-view/>
+  <section class="bg-white">
+    <div class="container px-6 py-10 mx-auto">
+      <router-view/>
+    </div>
+  </section>
   
 </template>
 
