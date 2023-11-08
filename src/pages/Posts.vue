@@ -8,7 +8,7 @@
   });
 
   const fetchPosts = async()=> {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
     posts.value = await res.json()
   };
 </script>
@@ -22,6 +22,7 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Body</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@
                 <td data-label="Nom">{{ post.id}}</td>
                 <td data-label="Title">{{ post.title}}</td>
                 <td data-label="Body">{{ post.body}}</td>
+                <td><router-link :to="{path: `/posts/${post.id}`}">View Post</router-link></td>
             </tr>
         </tbody>
     </table>
