@@ -9,11 +9,13 @@ const router = createRouter({
     {path: '/', component: () => import('./pages/Home.vue')},
     {path: '/about', component: () => import('./pages/About.vue')},
     {path: '/posts', component: () => import('./pages/Posts.vue')},
+    {path: '/:productName', component: () => import('./pages/ProductComponent.vue')},
+    {path: '/:postId(\\d+)', component: () => import('./pages/SinglePost.vue')},
     {path: '/posts/:id', component: () => import('./pages/SinglePost.vue')},
     {path: '/:pathMatch(.*)', component: () => import('./pages/NotFound.vue')}
   ],
   history: createWebHistory(import.meta.env.BASE_URL),
-
+  strict: true
 });
 
 const application = createApp(App)
