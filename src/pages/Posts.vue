@@ -14,24 +14,26 @@
 </script>
 
 <template>
- <h1 class="text-black">Posts</h1>
+  <div>
+    <h1 class="text-black">Posts</h1>
 
- <table class="table-responsive" v-if="posts.length">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Body</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="post in posts" :key="post.id">
-                <td data-label="Nom">{{ post.id}}</td>
-                <td data-label="Title">{{ post.title}}</td>
-                <td data-label="Body">{{ post.body}}</td>
-                <td><router-link :to="{path: `/posts/${post.id}`}">View Post</router-link></td>
-            </tr>
-        </tbody>
-    </table>
+    <table class="table-responsive" v-if="posts.length">
+          <thead>
+              <tr>
+                  <th>Id</th>
+                  <th>Title</th>
+                  <th>Body</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr v-for="post in posts" :key="post.id">
+                  <td data-label="Nom">{{ post.id}}</td>
+                  <td data-label="Title">{{ post.title}}</td>
+                  <td data-label="Body">{{ post.body}}</td>
+                  <td><router-link :to="{path: `/posts/${post.id}`}">View Post</router-link></td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
 </template>
