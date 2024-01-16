@@ -23,6 +23,7 @@ getPost();
     <p  class="py-6">
       {{ post.body }}
     </p>
+    <router-link to="/posts">Retour</router-link>
   </div>
 
 </template>
