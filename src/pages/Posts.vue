@@ -14,7 +14,9 @@
 </script>
 
 <template>
-  <div>
+  <div class="row" style="display: flex;">
+    <div class="col-md-8" style="max-width: 60%;">
+      <div>
     <h1 class="text-black">Posts</h1>
 
     <table class="table-responsive" v-if="posts.length">
@@ -35,5 +37,10 @@
               </tr>
           </tbody>
       </table>
+      </div>
+    </div>
+    <div class="col-md-4" style="max-width: 40%;">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
