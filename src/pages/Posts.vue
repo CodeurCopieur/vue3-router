@@ -33,7 +33,7 @@
                   <td data-label="Nom">{{ post.id}}</td>
                   <td data-label="Title">{{ post.title}}</td>
                   <td data-label="Body">{{ post.body}}</td>
-                  <td><router-link :to="{path: `/posts/${post.id}`}">View Post</router-link></td>
+                  <td><router-link :to="{path: `/post/${post.id}`}">View Post</router-link></td>
               </tr>
           </tbody>
       </table>
