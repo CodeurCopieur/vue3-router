@@ -30,10 +30,11 @@
           </thead>
           <tbody>
               <tr v-for="post in posts" :key="post.id">
-                  <td data-label="Nom">{{ post.id}}</td>
+                  <td data-label="id">{{ post.id}}</td>
                   <td data-label="Title">{{ post.title}}</td>
                   <td data-label="Body">{{ post.body}}</td>
-                  <td><router-link :to="{path: `/post/${post.id}`}">View Post</router-link></td>
+                  <td><router-link :to="{name: 'singlePost', params: {id: post.id}}">View Post</router-link></td>
+                  <!-- <td><router-link :to="{path: `/post/${post.id}`}">View Post</router-link></td> -->
               </tr>
           </tbody>
       </table>

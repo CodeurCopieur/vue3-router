@@ -15,7 +15,7 @@
             <nav class="flex items-center justify-center text-base md:ml-auto">
                 <router-link to="/" class="mr-5 font-medium hover:text-gray-900">Home</router-link>
                 <router-link to="/about" class="mr-5 font-medium hover:text-gray-900">About</router-link>
-                <router-link to="/posts" class="font-medium hover:text-gray-900">Posts</router-link>
+                <router-link :to="{name: 'posts'}" class="font-medium hover:text-gray-900">Posts</router-link>
             </nav>
         </div>
     </header>

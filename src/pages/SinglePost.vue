@@ -27,7 +27,9 @@
     <p  class="py-6">
       {{ post.body }}
     </p>
-    <router-link to="/posts">Retour</router-link>
+    <!-- <router-link to="/posts">Retour</router-link> -->
+    <router-link 
+      :to="{name: 'posts'}">View Post</router-link>
   </div>
 
 </template>
