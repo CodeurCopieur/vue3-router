@@ -1,8 +1,9 @@
 <script setup>
   import { ref, onMounted, watch, watchEffect } from "vue";
-  import { useRoute } from "vue-router";
+  import { useRoute, useRouter } from "vue-router";
 
   const route = useRoute(),
+    router = useRouter(),
     post = ref(null);
 
   const getPost = async() => {
@@ -14,10 +15,16 @@
   };
 
   // watch(()=> route.params, getPost)
-  watch(()=> route.params, getPost, {immediate: true})
-  // watchEffect(getPost)
+  // watch(()=> route.params, getPost, {immediate: true})
+  watchEffect(getPost)
 
-  getPost();
+  const onBack = () => {
+    router.push({ name: 'posts'})
+    // router.push({ path: '/post'})
+    // router.push('/post')
+  }
+
+  // getPost();
 </script>
 
 <template>
@@ -28,8 +35,9 @@
       {{ post.body }}
     </p>
     <!-- <router-link to="/posts">Retour</router-link> -->
-    <router-link 
-      :to="{name: 'posts'}">View Post</router-link>
+    <!-- <router-link 
+      :to="{name: 'posts'}">Retour</router-link> -->
+    <button @click="onBack">Retour</button>
   </div>
 
 </template>

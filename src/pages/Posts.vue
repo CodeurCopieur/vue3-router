@@ -1,6 +1,8 @@
 <script setup>
   import { ref, onMounted } from 'vue'
+  import { useRoute, useRouter } from "vue-router";
 
+  const router = useRouter()
   const posts = ref([]);
 
   onMounted(()=> {
@@ -10,6 +12,10 @@
   const fetchPosts = async()=> {
     const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
     posts.value = await res.json()
+  };
+
+  const onPostClick = (postId) => {
+    router.push({ name: 'singlePost', params: {id: postId}})
   };
 </script>
 
@@ -33,7 +39,8 @@
                   <td data-label="id">{{ post.id}}</td>
                   <td data-label="Title">{{ post.title}}</td>
                   <td data-label="Body">{{ post.body}}</td>
-                  <td><router-link :to="{name: 'singlePost', params: {id: post.id}}">View Post</router-link></td>
+                  <td><button @click="onPostClick(post.id)">View Post</button></td>
+                  <!-- <td><router-link :to="{name: 'singlePost', params: {id: post.id}}">View Post</router-link></td> -->
                   <!-- <td><router-link :to="{path: `/post/${post.id}`}">View Post</router-link></td> -->
               </tr>
           </tbody>
