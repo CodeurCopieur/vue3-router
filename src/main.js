@@ -2,16 +2,35 @@ import { createApp } from 'vue'
 import 'uno.css'
 import './style.css'
 import App from './App.vue'
+import LeftSideBar from './components/LeftSideBar.vue'
+import RightSideBar from './components/RightSideBar.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   routes: [
-    {path: '/', component: () => import('./pages/Home.vue')},
-    {path: '/about', component: () => import('./pages/About.vue')},
+    { path: '/', 
+      components: {
+        default: () => import('./pages/Home.vue'),
+        LeftSideBar,
+        RightSideBar,
+        header: () => import('./components/HeaderComponent.vue')
+      }
+    },  
+    { path: '/about', 
+      components: {
+        default: () => import('./pages/About.vue'),
+        LeftSideBar: () => import('./pages/Home.vue'),
+        RightSideBar: LeftSideBar,
+        header: () => import('./components/HeaderComponent.vue')
+      }
+    },
     {
       path: '/post', 
       name: 'posts',
-      component: () => import('./pages/Posts.vue'), 
+      components: {
+        default:() => import('./pages/Posts.vue'),
+        header: () => import('./components/HeaderComponent.vue')
+      }, 
       children: [
         { 
           path: ':id', 

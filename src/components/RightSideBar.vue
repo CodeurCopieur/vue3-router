@@ -3,7 +3,7 @@
 </script>
 
 <template>
- <h1 class="text-center">Home</h1>
+ <h1>Right Side Bar</h1>
 </template>
 
 <style lang="scss" scoped>
