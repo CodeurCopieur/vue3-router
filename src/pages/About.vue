@@ -1,5 +1,7 @@
 <script setup>
-  
+  const props = defineProps(['id']);
+  console.log('About');
+  console.log(props);
 </script>
 
 <template>

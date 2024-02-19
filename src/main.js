@@ -9,20 +9,32 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   routes: [
     { path: '/', 
+      // component: () => import('./pages/Home.vue'),
       components: {
         default: () => import('./pages/Home.vue'),
-        LeftSideBar,
-        RightSideBar,
+        // LeftSideBar,
+        // RightSideBar,
         header: () => import('./components/HeaderComponent.vue')
-      }
+      },
+      props: { name: 'Codwerk'}
     },  
-    { path: '/about', 
+    { path: '/about/:id', 
       components: {
         default: () => import('./pages/About.vue'),
         LeftSideBar: () => import('./pages/Home.vue'),
         RightSideBar: LeftSideBar,
         header: () => import('./components/HeaderComponent.vue')
-      }
+      },
+      props: {default: true, RightSideBar: true, LeftSideBar: true}
+    },
+    {
+      path: '/search',
+      name: 'search',
+      components: {
+        default:() => import('./pages/SearchUser.vue'),
+        header: () => import('./components/HeaderComponent.vue')
+      },
+      props: (route) => ({query: route.query.q})
     },
     {
       path: '/post', 
