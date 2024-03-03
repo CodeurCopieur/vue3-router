@@ -8,12 +8,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   routes: [
-    { path: '/', 
+    { path: '/home', 
       // component: () => import('./pages/Home.vue'),
       components: {
         default: () => import('./pages/Home.vue'),
         // LeftSideBar,
-        // RightSideBar,
+        RightSideBar,
         header: () => import('./components/HeaderComponent.vue')
       },
       props: { name: 'Codwerk'}
@@ -54,11 +54,42 @@ const router = createRouter({
     // {path: '/:productName+', component: () => import('./pages/ProductComponent.vue')},
     // {path: '/:id(\\d+)', component: () => import('./pages/SinglePost.vue')},
     // {path: '/posts/:id', component: () => import('./pages/SinglePost.vue')},
-    {path: '/:pathMatch(.*)', component: () => import('./pages/NotFound.vue')}
+    {
+      path: '/:pathMatch(.*)', 
+      components: {
+        default: () => import('./pages/NotFound.vue'),
+        header: () => import('./components/HeaderComponent.vue')
+      }
+    }
   ],
   history: createWebHistory(import.meta.env.BASE_URL),
   strict: true
 });
+
+function authAccess(to) {
+  return new Promise((resolve, reject) => {
+    setTimeout(async () => {
+      if (to.path.includes('/home') || to.path.includes('post') || to.path.includes('notfound')) {
+        resolve(true)
+      } else {
+        resolve(false)
+      }
+    }, 2000)
+  })
+}
+
+router.beforeEach(async(to, from, next) => {
+  console.log(to, from);
+  const hasAccess = await authAccess(to)
+  if (!hasAccess) {
+    // return { path: '/notfound'}
+    next({path: '/notfound'})
+  } else {
+    next(true)
+  }
+  // return true
+  
+})
 
 const application = createApp(App)
 

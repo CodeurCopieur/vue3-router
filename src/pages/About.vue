@@ -1,7 +1,7 @@
 <script setup>
   const props = defineProps(['id']);
   console.log('About');
-  console.log(props);
+  console.log(props.id);
 </script>
 
 <template>

@@ -13,7 +13,7 @@
                         fill-rule="nonzero" /></svg>
             </router-link>
             <nav class="flex items-center justify-center text-base md:ml-auto">
-                <router-link to="/" class="mr-5 font-medium hover:text-gray-900">Home</router-link>
+                <router-link to="/home" class="mr-5 font-medium hover:text-gray-900">Home</router-link>
                 <router-link to="/about" class="mr-5 font-medium hover:text-gray-900">About</router-link>
                 <router-link :to="{name: 'posts'}" class="mr-5 font-medium hover:text-gray-900">Posts</router-link>
                 <router-link :to="{name: 'search'}" class="font-medium hover:text-gray-900">Search</router-link>
