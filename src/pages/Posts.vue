@@ -1,12 +1,13 @@
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, inject } from 'vue'
   import { useRoute, useRouter } from "vue-router";
 
   const router = useRouter()
   const posts = ref([]);
 
   onMounted(()=> {
-    fetchPosts()
+    // fetchPosts()
+    posts.value = inject('postsData')
   });
 
   const fetchPosts = async()=> {

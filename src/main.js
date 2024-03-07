@@ -8,7 +8,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   routes: [
-    { path: '/home', 
+    { path: '/', 
       // component: () => import('./pages/Home.vue'),
       components: {
         default: () => import('./pages/Home.vue'),
@@ -69,7 +69,7 @@ const router = createRouter({
 function authAccess(to) {
   return new Promise((resolve, reject) => {
     setTimeout(async () => {
-      if (to.path.includes('/home') || to.path.includes('post') || to.path.includes('notfound')) {
+      if (to.path.includes('post') || to.path.includes('notfound')) {
         resolve(true)
       } else {
         resolve(false)
@@ -80,14 +80,24 @@ function authAccess(to) {
 
 router.beforeEach(async(to, from, next) => {
   console.log(to, from);
-  const hasAccess = await authAccess(to)
-  if (!hasAccess) {
-    // return { path: '/notfound'}
-    next({path: '/notfound'})
-  } else {
-    next(true)
-  }
+  next(true)
+  // const hasAccess = await authAccess(to)
+  // if (!hasAccess) {
+  //   // return { path: '/notfound'}
+  //   next({path: '/notfound'})
+  // } else {
+  //   next(true)
+  // }
   // return true
+  
+})
+
+router.beforeResolve(async(to)=> {
+  if (to.path.includes('post')){
+    await authAccess(to)
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
+    application.provide('postsData', await res.json())
+  }
   
 })
 
