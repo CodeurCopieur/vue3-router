@@ -81,7 +81,7 @@ function authAccess(to) {
 
 function auth1(to, from) {
   console.log('auth1');
-  return false;
+  return true
 }
 
 function auth2(to, from) {
