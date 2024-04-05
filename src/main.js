@@ -81,6 +81,7 @@ function authAccess(to) {
 
 function auth1(to, from) {
   console.log('auth1');
+  // si c false cela bloque la suite de la navigation
   return true
 }
 
