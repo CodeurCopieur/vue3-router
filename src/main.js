@@ -16,7 +16,8 @@ const router = createRouter({
         RightSideBar,
         header: () => import('./components/HeaderComponent.vue')
       },
-      props: { name: 'Codwerk'}
+      props: { name: 'Codwerk'},
+      beforeEnter: [auth1, auth2]
     },  
     { path: '/about/:id', 
       components: {
@@ -74,12 +75,22 @@ function authAccess(to) {
       } else {
         resolve(false)
       }
-    }, 2000)
+    }, 500)
   })
 }
 
+function auth1(to, from) {
+  console.log('auth1');
+  return false;
+}
+
+function auth2(to, from) {
+  console.log('auth2');
+  return true
+}
+
 router.beforeEach(async(to, from, next) => {
-  console.log(to, from);
+  console.log('beforeEach');
   next(true)
   // const hasAccess = await authAccess(to)
   // if (!hasAccess) {
@@ -92,9 +103,15 @@ router.beforeEach(async(to, from, next) => {
   
 })
 
+router.afterEach((to, from) => {
+  // to and from are both route objects.
+  console.log('afterEach');
+})  
+
 router.beforeResolve(async(to)=> {
+  console.log('beforeResolve');
   if (to.path.includes('post')){
-    await authAccess(to)
+    // await authAccess(to)
     const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
     application.provide('postsData', await res.json())
   }
