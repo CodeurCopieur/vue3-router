@@ -1,6 +1,6 @@
 <script setup>
   import { ref, onMounted, inject } from 'vue'
-  import { useRoute, useRouter } from "vue-router";
+  import { onBeforeRouteLeave, useRoute, useRouter } from "vue-router";
 
   const router = useRouter()
   const posts = ref([]);
@@ -9,6 +9,10 @@
     // fetchPosts()
     posts.value = inject('postsData')
   });
+
+  onBeforeRouteLeave( (to, from) => {
+    console.log('before route leave', to, from)  
+  })
 
   const fetchPosts = async()=> {
     const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')

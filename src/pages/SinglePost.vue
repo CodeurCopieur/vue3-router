@@ -1,6 +1,6 @@
 <script setup>
   import { ref, onMounted, watch, watchEffect } from "vue";
-  import { useRoute, useRouter } from "vue-router";
+  import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 
   const route = useRoute(),
     router = useRouter(),
@@ -13,6 +13,10 @@
       );
       post.value = await res.json();
   };
+
+  onBeforeRouteUpdate((to, from)=> {
+    console.log(to, from);
+  })
 
   // watch(()=> route.params, getPost)
   // watch(()=> route.params, getPost, {immediate: true})

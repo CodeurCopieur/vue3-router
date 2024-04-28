@@ -19,7 +19,8 @@ const router = createRouter({
       props: { name: 'Codwerk'},
       beforeEnter: [auth1, auth2]
     },  
-    { path: '/about/:id', 
+    // { path: '/about/:id', 
+    { path: '/about', 
       components: {
         default: () => import('./pages/About.vue'),
         LeftSideBar: () => import('./pages/Home.vue'),
